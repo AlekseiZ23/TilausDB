@@ -1,0 +1,66 @@
+﻿@model IEnumerable<TilausDB.Models.Tilaukset>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tilauspvm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Toimituspvm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Toimitusosoite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Postinumero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Asiakkaat.Nimi)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(item.Tilauspvm == null ? "" : ((DateTime)item.Tilauspvm).ToString("d/M/yyyy"))
+                
+            </td>
+            <td>
+                @(item.Toimituspvm == null ? "" : ((DateTime)item.Toimituspvm).ToString("d/M/yyyy"))
+           
+            </td>
+
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Toimitusosoite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Postinumero)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Asiakkaat.Nimi)
+            </td>
+
+            
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.TilausID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TilausID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TilausID })
+            </td>
+        </tr>
+    }
+
+</table>
